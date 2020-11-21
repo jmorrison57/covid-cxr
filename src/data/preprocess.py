@@ -76,7 +76,8 @@ def build_dataset(cfg):
     num_remaining = num_rsna_imgs - num_rsna_imgs // 2
     for df_idx in rsna_pneum_df.index.values.tolist():
         filename = rsna_pneum_df.loc[df_idx]['patientId']
-        ds = dicom.dcmread(os.path.join(rsna_data_path + 'stage_2_train_images/' + filename + '.dcm'))
+        with fs.open(f'{rsna_data_path}stage_2_train_images/{filename}.dcm', 'rb') as f:
+            ds = dicom.dcmread(f)
         if any(view in ds.SeriesDescription.split(' ')[1] for view in cfg['DATA']['VIEWS']):  # Select desired X-ray views
             if not os.path.exists(rsna_data_path + filename + '.jpg'):
                 cv2.imwrite(os.path.join(rsna_data_path + filename + '.jpg'), ds.pixel_array)  # Save as .jpg
