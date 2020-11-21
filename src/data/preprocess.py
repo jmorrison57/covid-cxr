@@ -103,7 +103,7 @@ def build_dataset(cfg):
 
         rsna_df = pd.concat([rsna_normal_df, rsna_pneum_df], axis=0)
         rsna_filenames = rsna_data_path.split('/')[-2] + '/' + rsna_df['patientId'].astype(str) + '.jpg'
-        rsna_file_df = pd.DataFrame({'filename': "s3://xrayimages57/"+rsna_filenames, 'label': 0})
+        rsna_file_df = pd.DataFrame({'filename': rsna_filenames, 'label': 0})
 
         file_df = pd.concat([file_df, rsna_file_df], axis=0)         # Combine both datasets
     else:
