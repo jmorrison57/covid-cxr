@@ -77,7 +77,7 @@ def predict_and_explain_set(raw_img_dir=None, preds_dir=None, save_results=True,
     cur_date = datetime.now().strftime('%Y%m%d-%H%M%S')
 
     # Restore the model, LIME explainer, and model class indices from their respective serializations
-    model = load_model(cfg['PATHS']['MODEL_TO_LOAD'] + 'model' + cur_date + '.h5', compile=False)
+    model = load_model(cfg['PATHS']['MODEL_TO_LOAD'], compile=False)
     explainer = dill.load(open(cfg['PATHS']['LIME_EXPLAINER'], 'rb'))
     class_indices = dill.load(open(cfg['PATHS']['OUTPUT_CLASS_INDICES'], 'rb'))
 

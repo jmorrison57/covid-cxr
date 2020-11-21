@@ -379,7 +379,7 @@ def train_experiment(cfg=None, experiment='single_train', save_weights=True, wri
             if write_logs:
                 log_test_results(cfg, model, test_generator, test_metrics, log_dir)
         if save_weights:
-            model_path = cfg['PATHS']['MODEL_WEIGHTS'] + 'model' + cur_date + '.h5'
+            model_path = cfg['PATHS']['MODEL_WEIGHTS'] + 'model.h5'
             save_model(model, model_path)  # Save the model's weights
     return
 
