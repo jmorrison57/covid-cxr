@@ -64,7 +64,7 @@ def build_dataset(cfg):
             ds = dicom.dcmread(f)
         if any(view in ds.SeriesDescription.split(' ')[1] for view in cfg['DATA']['VIEWS']):  # Select desired X-ray views
             if not os.path.exists(rsna_data_path + filename + '.jpg'):
-                cv2.imwrite(os.path.join(raw +'rsna/'+ filename + '.jpg'), ds.pixel_array)   # Save as .jpg
+                cv2.imwrite(os.path.join(raw + 'rsna-pneumonia-detection-challenge/'+ filename + '.jpg'), ds.pixel_array)   # Save as .jpg
             normal_idxs.append(df_idx)
             file_counter += 1
         if file_counter >= num_rsna_imgs // 2:
@@ -81,7 +81,7 @@ def build_dataset(cfg):
             ds = dicom.dcmread(f)
         if any(view in ds.SeriesDescription.split(' ')[1] for view in cfg['DATA']['VIEWS']):  # Select desired X-ray views
             if not os.path.exists(rsna_data_path + filename + '.jpg'):
-                cv2.imwrite(os.path.join(raw +'rsna/'+ filename + '.jpg'), ds.pixel_array)  # Save as .jpg
+                cv2.imwrite(os.path.join(raw +'rsna-pneumonia-detection-challenge/'+ filename + '.jpg'), ds.pixel_array)  # Save as .jpg
             pneum_idxs.append(df_idx)
             file_counter += 1
         if file_counter >= num_remaining:
