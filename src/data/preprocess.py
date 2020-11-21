@@ -9,7 +9,7 @@ import cv2
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
 import boto3
-
+import s3fs
 
 def build_dataset(cfg):
     '''
@@ -17,8 +17,6 @@ def build_dataset(cfg):
     :param cfg: Project config dictionary
     :return: DataFrame of file names of examples and corresponding class labels
     '''
-    # S3 Client
-    client = boto3.client("s3")
     
     # Get paths of raw datasets to be included
     mila_data_path = cfg['PATHS']['MILA_DATA']
@@ -57,7 +55,8 @@ def build_dataset(cfg):
     normal_idxs = []
     for df_idx in rsna_normal_df.index.values.tolist():
         filename = rsna_normal_df.loc[df_idx]['patientId']
-        ds = dicom.dcmread(os.path.join(rsna_data_path + 'stage_2_train_images/' + filename + '.dcm'))
+        with fs.open(f'{rsna_data_path}stage_2_train_images/{filename}.dcm', 'rb') as f:
+            ds = dicom.dcmread(f)
         if any(view in ds.SeriesDescription.split(' ')[1] for view in cfg['DATA']['VIEWS']):  # Select desired X-ray views
             if not os.path.exists(rsna_data_path + filename + '.jpg'):
                 cv2.imwrite(os.path.join(rsna_data_path + filename + '.jpg'), ds.pixel_array)   # Save as .jpg
