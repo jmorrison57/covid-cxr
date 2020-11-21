@@ -8,6 +8,7 @@ import shutil
 import cv2
 from tqdm import tqdm
 from sklearn.model_selection import train_test_split
+import boto3
 
 
 def build_dataset(cfg):
@@ -16,7 +17,9 @@ def build_dataset(cfg):
     :param cfg: Project config dictionary
     :return: DataFrame of file names of examples and corresponding class labels
     '''
-
+    # S3 Client
+    client = boto3.client("s3")
+    
     # Get paths of raw datasets to be included
     mila_data_path = cfg['PATHS']['MILA_DATA']
     fig1_data_path = cfg['PATHS']['FIGURE1_DATA']
