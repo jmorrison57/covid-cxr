@@ -13,3 +13,4 @@ tensorboard==2.2.2
 lime==0.1.1.37
 boto3==1.0.0
 s3fs==0.5.1
+ipyplot==1.1.0
