@@ -17,6 +17,10 @@ def build_dataset(cfg):
     :param cfg: Project config dictionary
     :return: DataFrame of file names of examples and corresponding class labels
     '''
+    ## S3 File system stuff
+    client = boto3.client('s3')
+    fs = s3fs.S3FileSystem(anon=False)
+    fs.ls('xrayimages57')
     
     # Get paths of raw datasets to be included
     mila_data_path = cfg['PATHS']['MILA_DATA']
