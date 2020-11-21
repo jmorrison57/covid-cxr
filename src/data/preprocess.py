@@ -26,6 +26,7 @@ def build_dataset(cfg):
     mila_data_path = cfg['PATHS']['MILA_DATA']
     fig1_data_path = cfg['PATHS']['FIGURE1_DATA']
     rsna_data_path = cfg['PATHS']['RSNA_DATA']
+    raw = cfg['PATHS']['RAW_DATA']
 
     # Assemble filenames comprising Mila dataset
     mila_df = pd.read_csv(mila_data_path + 'metadata.csv')
@@ -63,7 +64,7 @@ def build_dataset(cfg):
             ds = dicom.dcmread(f)
         if any(view in ds.SeriesDescription.split(' ')[1] for view in cfg['DATA']['VIEWS']):  # Select desired X-ray views
             if not os.path.exists(rsna_data_path + filename + '.jpg'):
-                cv2.imwrite(os.path.join(rsna_data_path + filename + '.jpg'), ds.pixel_array)   # Save as .jpg
+                cv2.imwrite(os.path.join(raw + 'rsna-pneumonia-detection-challenge'+ filename + '.jpg'), ds.pixel_array)   # Save as .jpg
             normal_idxs.append(df_idx)
             file_counter += 1
         if file_counter >= num_rsna_imgs // 2:
@@ -80,7 +81,7 @@ def build_dataset(cfg):
             ds = dicom.dcmread(f)
         if any(view in ds.SeriesDescription.split(' ')[1] for view in cfg['DATA']['VIEWS']):  # Select desired X-ray views
             if not os.path.exists(rsna_data_path + filename + '.jpg'):
-                cv2.imwrite(os.path.join(rsna_data_path + filename + '.jpg'), ds.pixel_array)  # Save as .jpg
+                cv2.imwrite(os.path.join(raw +'rsna-pneumonia-detection-challenge'+ filename + '.jpg'), ds.pixel_array)  # Save as .jpg
             pneum_idxs.append(df_idx)
             file_counter += 1
         if file_counter >= num_remaining:
