@@ -8,7 +8,7 @@ PATHS:
   VAL_SET: 'data/processed/val_set.csv'
   TEST_SET: 'data/processed/test_set.csv'
   IMAGES: 'documents/generated_images/'
-  LOGS: 'results\\logs\\'
+  LOGS: 'logs'
   MODEL_WEIGHTS: 'results/models/'
   MODEL_TO_LOAD: 'results/models/model.h5'
   LIME_EXPLAINER: './data/interpretability/lime_explainer.pkl'
