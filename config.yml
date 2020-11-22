@@ -35,7 +35,7 @@ TRAIN:
   EPOCHS: 10
   THRESHOLDS: 0.5                                         # Can be changed to list of values in range [0, 1]
   PATIENCE: 7
-  IMB_STRATEGY: 'random_oversample'                            # One of {'class_weight', 'random_oversample'}
+  IMB_STRATEGY: 'class_weight'                            # One of {'class_weight', 'random_oversample'}
   METRIC_PREFERENCE: ['auc', 'recall', 'precision', 'loss']
   NUM_RUNS: 10
   NUM_GPUS: 1
