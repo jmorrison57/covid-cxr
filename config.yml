@@ -27,7 +27,7 @@ DATA:
 
 TRAIN:
   CLASS_MODE: 'binary'                                    # One of {'binary', 'multiclass'}
-  MODEL_DEF: 'dcnn_resnet'                                # One of {'dcnn_resnet', 'resnet50v2', 'resnet101v2'}
+  MODEL_DEF: 'resnet101v2'                                # One of {'dcnn_resnet', 'resnet50v2', 'resnet101v2'}
   CLASS_MULTIPLIER: [0.15, 1.0]                           # Class multiplier for binary classification
   #CLASS_MULTIPLIER: [0.4, 1.0, 0.4]                      # Class multiplier for multiclass classification (3 classes)
   EXPERIMENT_TYPE: 'single_train'                         # One of {'single_train', 'multi_train', 'hparam_search'}
