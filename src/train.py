@@ -35,15 +35,15 @@ def get_class_weights(histogram, class_multiplier=None):
     :param class_multiplier: List of values to multiply the calculated class weights by. For further control of class weighting.
     :return: A dictionary containing weights for each class
     '''
-    # weights = [None] * len(histogram)
-    # for i in range(len(histogram)):
-    #     weights[i] = (1.0 / len(histogram)) * sum(histogram) / histogram[i]
-    # # class_weight = {i: weights[i] for i in range(len(histogram))}
+    weights = [None] * len(histogram)
+    for i in range(len(histogram)):
+        weights[i] = (1.0 / len(histogram)) * sum(histogram) / histogram[i]
+    # class_weight = {i: weights[i] for i in range(len(histogram))}
    
-    # if class_multiplier is not None:
-    #     class_weight = [class_weight[i] * class_multiplier[i] for i in range(len(histogram))]
-    # print("Class weights: ", class_weight)
-    class_weight = {'non-COVID-19': 1., 'COVID-19': 50.}
+    if class_multiplier is not None:
+        class_weight = [class_weight[i] * class_multiplier[i] for i in range(len(histogram))]
+    print("Class weights: ", class_weight)
+
     
     return class_weight
 
