@@ -1,8 +1,4 @@
 from tensorflow.compat.v1.keras.backend import get_session
-import numpy as np
-import shap
-import tensorflow.compat.v1.keras.backend as K
-import json
 import matplotlib.pyplot as pl
 import yaml
 import pandas as pd
@@ -18,14 +14,12 @@ from src.visualization.visualize import visualize_explanation
 from src.predict import predict_instance, predict_and_explain
 from src.data.preprocess import remove_text
 
-from tensorflow.keras.applications.vgg16 import VGG16
-from tensorflow.keras.applications.vgg16 import preprocess_input, decode_predictions
-from tensorflow.compat.v1.keras.backend import get_session
-import tensorflow as tf
+from keras.applications.vgg16 import VGG16
+from keras.applications.vgg16 import preprocess_input
+import keras.backend as K
 import numpy as np
-import shap
-import tensorflow.compat.v1.keras.backend as K
 import json
+import shap
 
 def setup_shap():
     '''
@@ -34,7 +28,7 @@ def setup_shap():
     '''
 
     # Load relevant constants from project config file
-    cfg = yaml.full_load(open(os.getcwd()/ + "/config.yml", 'r'))
+    cfg = yaml.full_load(open(os.getcwd() + "/config.yml", 'r'))
     shap_dict = {}
     shap_dict['NUM_SAMPLES'] = cfg['LIME']['NUM_SAMPLES']
     shap_dict['NUM_FEATURES'] = cfg['LIME']['NUM_FEATURES']
@@ -124,5 +118,5 @@ def explain_xray_shap(shap_dict, idx, layerToExplain, save_exp=True):
 
 if __name__ == '__main__':
     shap_dict = setup_shap()
-    tf.compat.v1.disable_v2_behavior()                     
-    explain_xray_shap(shap_dict, 0, 17, save_exp=True) 
+    tf.compat.v1.disable_v2_behavior()                    
+    explain_xray_shap(shap_dict, 0, 12, save_exp=True) 
