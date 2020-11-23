@@ -38,11 +38,11 @@ def get_class_weights(histogram, class_multiplier=None):
     weights = [None] * len(histogram)
     for i in range(len(histogram)):
         weights[i] = (1.0 / len(histogram)) * sum(histogram) / histogram[i]
-    # class_weight = {i: weights[i] for i in range(len(histogram))}
-   
+    class_weight = {i: weights[i] for i in range(len(histogram))}
     if class_multiplier is not None:
         class_weight = [class_weight[i] * class_multiplier[i] for i in range(len(histogram))]
     print("Class weights: ", class_weight)
+    return class_weight
 
     
     return class_weight
