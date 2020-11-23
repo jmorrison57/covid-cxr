@@ -15,6 +15,15 @@ import sys, os
 sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
 from src.data.preprocess import remove_text
 
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.applications.vgg16 import preprocess_input, decode_predictions
+from tensorflow.compat.v1.keras.backend import get_session
+import tensorflow as tf
+import numpy as np
+import shap
+import tensorflow.compat.v1.keras.backend as K
+import json
+
 def setup_shap():
     '''
     Load relevant information and create a LIME Explainer
@@ -112,5 +121,5 @@ def explain_xray_shap(shap_dict, idx, layerToExplain, save_exp=True):
 
 if __name__ == '__main__':
     shap_dict = setup_shap()
-                                        
+    tf.compat.v1.disable_v2_behavior()                     
     explain_xray_shap(shap_dict, 0, 17, save_exp=True) 
