@@ -43,7 +43,8 @@ def get_class_weights(histogram, class_multiplier=None):
     # if class_multiplier is not None:
     #     class_weight = [class_weight[i] * class_multiplier[i] for i in range(len(histogram))]
     # print("Class weights: ", class_weight)
-    class_weight = {0: 1., 1: 26.}
+    class_weight = {'non-COVID-19': 1., 'COVID-19': 50.}
+    
     return class_weight
 
 
