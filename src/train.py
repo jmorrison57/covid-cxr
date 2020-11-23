@@ -351,7 +351,7 @@ def train_experiment(cfg=None, experiment='single_train', save_weights=True, wri
 
     # Set logs directory
     cur_date = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
-    log_dir = cfg['PATHS']['LOGS'] + "training/" + cur_date if write_logs else None
+    log_dir = cfg['PATHS']['LOGS'] + cur_date if write_logs else None
     if not os.path.exists(cfg['PATHS']['LOGS']):
         os.makedirs(cfg['PATHS']['LOGS'])
 
