@@ -12,7 +12,10 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import load_model
 from IPython.core.debugger import set_trace
 import sys, os
-sys.path.append(os.path.join(os.path.dirname(sys.path[0]),''))
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]),'../'))
+
+from src.visualization.visualize import visualize_explanation
+from src.predict import predict_instance, predict_and_explain
 from src.data.preprocess import remove_text
 
 from tensorflow.keras.applications.vgg16 import VGG16
@@ -31,7 +34,7 @@ def setup_shap():
     '''
 
     # Load relevant constants from project config file
-    cfg = yaml.full_load(open(os.getcwd()/ + "../config.yml", 'r'))
+    cfg = yaml.full_load(open(os.getcwd()/ + "/config.yml", 'r'))
     shap_dict = {}
     shap_dict['NUM_SAMPLES'] = cfg['LIME']['NUM_SAMPLES']
     shap_dict['NUM_FEATURES'] = cfg['LIME']['NUM_FEATURES']
