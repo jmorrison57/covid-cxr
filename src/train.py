@@ -67,7 +67,7 @@ def random_minority_oversample(train_set):
     return train_set_resampled
 
 
-def train_model(cfg, data, callbacks, verbose=1):
+def train_model(cfg, data, callbacks, verbose=0):
     '''
     Train a and evaluate model on given data.
     :param cfg: Project config (from config.yml)
