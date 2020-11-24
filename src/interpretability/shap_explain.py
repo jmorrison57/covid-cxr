@@ -1,5 +1,5 @@
 from tensorflow.compat.v1.keras.backend import get_session
-import matplotlib.pyplot as pl
+import matplotlib.pyplot as plt
 import yaml
 import pandas as pd
 import dill
@@ -14,6 +14,7 @@ from src.visualization.visualize import visualize_explanation
 from src.predict import predict_instance, predict_and_explain
 from src.data.preprocess import remove_text
 
+import tensorflow as tf
 from keras.applications.vgg16 import VGG16
 from keras.applications.vgg16 import preprocess_input
 import keras.backend as K
@@ -112,7 +113,7 @@ def explain_xray_shap(shap_dict, idx, layerToExplain, save_exp=True):
     index_names = np.vectorize(lambda x: shap_dict['CLASSES'][x])(indexes)
 
     # plot the explanations
-    image_plot(shap_values, to_explain, index_names, orig_img=orig_img)
+    shap.image_plot(shap_values, to_explain, index_names, orig_img=orig_img)
 
     return
 
