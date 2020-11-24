@@ -159,10 +159,10 @@ def preprocess(cfg=None):
     # Split dataset into train, val and test sets
     val_split = cfg['DATA']['VAL_SPLIT']
     test_split = cfg['DATA']['TEST_SPLIT']
-    file_df_train, file_df_test = train_test_split(file_df, test_size=test_split, stratify=file_df['label'],random_state=101)
+    file_df_train, file_df_test = train_test_split(file_df, test_size=test_split, stratify=file_df['label'],random_state=57)
     relative_val_split = val_split / (1 - test_split)  # Calculate fraction of train_df to be used for validation
     file_df_train, file_df_val = train_test_split(file_df_train, test_size=relative_val_split,
-                                                      stratify=file_df_train['label'],random_state=101)
+                                                      stratify=file_df_train['label'],random_state=57)
 
     # Save training, validation and test sets
     if not os.path.exists(cfg['PATHS']['PROCESSED_DATA']):
